@@ -2,3 +2,8 @@
     background: black!important;
     color: white !important;
 }
+
+.bg-darkGray {
+background: #181818!important;
+color:white!important;
+}
