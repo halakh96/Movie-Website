@@ -74,15 +74,19 @@ axios
 .then ((res)=>{console.log(res.data.results)
     
     card.innerHTML = res.data.results.map(item=> 
-        `<div class="col-6 col-md-2 mb-4 m-md-1"> 
-        <div class="card border-0 " onclick="MoviesDetails(${item.id})">
-        <img src=${imgPath+item.poster_path} >
+       ` <div class="col-6 col-md-2 mb-4 m-md-1"> 
+        <div class="card border-0">
+        <img src=${imgPath+item.poster_path}>
+        <div class=" text-center bg-black">
+        <a class="btn "data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+        <a><i class="far fa-heart btn" ></i></a>
+        <a><i class="fas fa-plus btn "></i></a>
+        </div>
         </div>
         </div>`
-).join('')
+        ).join('')
 })
 }
-
 
 // ---------- Modal Box of Movies details ----------------
 
@@ -90,11 +94,21 @@ function MoviesDetails (movie_id){
 axios
 .get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=dddcc98fb8bd593bb9ea017eadac6c61&append_to_response=videos,similar,credits`)
 .then((res)=>{console.log(res.data)
- let movie = res.data;
- document.getElementById("ModalBox").innerHTML = 
+ let item = res.data;
+ document.getElementById("TheModalBox").innerHTML = 
  `
-
+ <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+ <div class="modal-content bg-darkGray p-4">
+      <h2>${item.title}
+      <div type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></div>
+      </h2>
+      <p>${item.release_date}</p>
+     <p>${item.overview}</p>
+ </div>
+</div>
  `;
     
 })
 }
+
+// ---------- Fav List ----------------
