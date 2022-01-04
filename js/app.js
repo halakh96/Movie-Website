@@ -78,7 +78,6 @@ card.innerHTML = res.data.results.map(item=>
         </div>
     </div>
  </div>
-  // Modal box
  <div id="TheModalBox"class="modal fade">
    <div class="modal-dialog">
    </div>
