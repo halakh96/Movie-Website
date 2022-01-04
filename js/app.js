@@ -9,7 +9,7 @@ axios
 .get(Trending_apiUrl)
 .then ((res) =>{ console.log(res.data.results)
 document.getElementById("Trending").innerHTML = res.data.results.map(item=> 
-`<div class="col-6 col-md-2 mb-4 m-md-1"> 
+`<div class="col-6 col-md-3 mb-4"> 
     <div class="card border-0">
        <img src=${imgPath+item.poster_path}>
          <div class=" text-center bg-black  justify-content-md-between align-items-center">
@@ -68,16 +68,22 @@ axios
 .then ((res)=>{console.log(res.data.results)
     
 card.innerHTML = res.data.results.map(item=> 
-`<div class="col-6 col-md-2 mb-4 m-md-1"> 
-    <div class="card border-0">
-      <img src=${imgPath+item.poster_path}>
+`<div class="col-4 col-md-3 col-lg-2 mb-4 "> 
+    <div class="card border-0 " >
+      <img src=${imgPath+item.poster_path} >
         <div class=" text-center bg-black  justify-content-md-between align-items-center">
           <a class="btn "data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
           <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
           <a><i class="fas fa-plus btn   p-1"></i></a>
         </div>
     </div>
- </div>`
+ </div>
+  // Modal box
+ <div id="TheModalBox"class="modal fade">
+   <div class="modal-dialog">
+   </div>
+ </div>
+ `
 ).join('')
 })
 }
@@ -102,14 +108,14 @@ axios
  
  document.getElementById("TheModalBox").innerHTML = 
  `
- <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-     <div class="modal-content bg-darkGray p-4">
-      <h2>${item.title}
+ <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"">
+     <div class="modal-content bg-darkGray p-4 text-center">
+       <h2>${item.title}
       <div type="button"  class="btn-close float-end white-text" data-bs-dismiss="modal" aria-label="Close"></div>
-      </h2>
-      <p>${item.release_date}|${genreList}</p>
-      <p>${item.overview}</p>
-      <p>${charNames}</p>
+       </h2>
+       <p>${item.release_date}|${genreList} </p>
+       <p>${item.overview}</p>
+       <p>${charNames}</p>
       <div>${item.videos.results}</div>
     </div>
 </div>
