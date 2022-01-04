@@ -9,16 +9,16 @@ axios
 .get(Trending_apiUrl)
 .then ((res) =>{ console.log(res.data.results)
 document.getElementById("Trending").innerHTML = res.data.results.map(item=> 
-       ` <div class="col-6 col-md-2 mb-4 m-md-1"> 
-       <div class="card border-0">
+`<div class="col-6 col-md-2 mb-4 m-md-1"> 
+    <div class="card border-0">
        <img src=${imgPath+item.poster_path}>
-       <div class=" text-center bg-black  justify-content-md-between align-items-center">
- <a class="btn "data-bs-toggle="modal"  data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
- <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
- <a><i class="fas fa-plus btn   p-1"></i></a>
-</div>
- </div>
-       </div>`
+         <div class=" text-center bg-black  justify-content-md-between align-items-center">
+             <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+             <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
+             <a><i class="fas fa-plus btn   p-1"></i></a>
+         </div>
+      </div>
+</div>`
 ).join('')
 })
 
@@ -67,18 +67,18 @@ axios
 .get(`https://api.themoviedb.org/3/discover/movie?api_key=dddcc98fb8bd593bb9ea017eadac6c61&with_genres=${id}`)
 .then ((res)=>{console.log(res.data.results)
     
-    card.innerHTML = res.data.results.map(item=> 
-       ` <div class="col-6 col-md-2 mb-4 m-md-1"> 
-        <div class="card border-0">
-        <img src=${imgPath+item.poster_path}>
+card.innerHTML = res.data.results.map(item=> 
+`<div class="col-6 col-md-2 mb-4 m-md-1"> 
+    <div class="card border-0">
+      <img src=${imgPath+item.poster_path}>
         <div class=" text-center bg-black  justify-content-md-between align-items-center">
-  <a class="btn "data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
-  <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
-  <a><i class="fas fa-plus btn   p-1"></i></a>
-</div>
-  </div>
-        </div>`
-        ).join('')
+          <a class="btn "data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+          <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
+          <a><i class="fas fa-plus btn   p-1"></i></a>
+        </div>
+    </div>
+ </div>`
+).join('')
 })
 }
 
@@ -91,24 +91,27 @@ axios
 .then((res)=>{console.log(res.data)
  let item = res.data;
  let char = item.credits.cast;
- console.log(char,"charlist");
- for(let i=0;i<4;i++){
-  console.log(char[i],"char");
-
+ var charNames = []; 
+ for(var i = 0; i < 4; i++){
+  charNames.push(char[i].name);
  }
+ let genre = res.data.genres;
+ var genreList = genre.map((genre) =>{
+  return genre.name;
+});
+ 
  document.getElementById("TheModalBox").innerHTML = 
  `
  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
- <div class="modal-content bg-darkGray p-4">
+     <div class="modal-content bg-darkGray p-4">
       <h2>${item.title}
       <div type="button"  class="btn-close float-end white-text" data-bs-dismiss="modal" aria-label="Close"></div>
       </h2>
-      <p>${item.release_date}|${item.genres[0].name}</p>
-     <p>${item.overview}</p>
-
-     <p>${item.credits.cast[0].name}</p>
-     <div>${item.videos.results}</div>
- </div>
+      <p>${item.release_date}|${genreList}</p>
+      <p>${item.overview}</p>
+      <p>${charNames}</p>
+      <div>${item.videos.results}</div>
+    </div>
 </div>
  `;
     
@@ -116,12 +119,25 @@ axios
 }
 
 // ---------- Fav List ----------------
-function FavList (item_id){
-  console.log(item_id,'itemFavLIST');
-  let Favcards = [];
-  Favcards.push(item_id);
-  localStorage.setItem("Favcards", JSON.stringify(Favcards)); // store cards
+function FavList (movie_id){
+  console.log(movie_id,'id_FavList');
+  axios
+.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=dddcc98fb8bd593bb9ea017eadac6c61&append_to_response=videos,similar,credits`)
+.then((res)=>{console.log(res.data)
+ let item = res.data;
+ let Favcards = [];
+  Favcards.push(item);
+  localStorage.setItem("Favcards", JSON.stringify(Favcards)); 
   console.log(localStorage.getItem("Favcards"));
-
+  const main_favPage = document.getElementById("main");
+  console.log(main_favPage);
+  JSON.parse(localStorage.getItem("Favcards")).forEach(function(element){
+`<div class="col-6 col-md-2 mb-4 m-md-1"> 
+    <div class="card border-0">
+      <img src=${imgPath+element.poster_path}>
+    </div>
+ </div>`
+  });
+ })
 
 }
