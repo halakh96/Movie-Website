@@ -104,45 +104,42 @@ axios
  var genreList = genre.map((genre) =>{
   return genre.name;
 });
+let video = res.data.videos.results;
+console.log(video);
+let similarMovies = res.data.similar.results;
+console.log(similarMovies);
+var similarMoviesList = similarMovies.map((element)=>{
+  return element;
+})
  
  document.getElementById("TheModalBox").innerHTML = 
  `
- <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"">
-     <div class="modal-content bg-darkGray p-4 text-center">
+ <div class="modal-dialog modal-xl modal-dialog-centered "">
+    <div class="modal-content bg-darkGray p-4 text-center">
        <h2>${item.title}
-      <div type="button"  class="btn-close float-end white-text" data-bs-dismiss="modal" aria-label="Close"></div>
+        <div type="button"  class="btn-close float-end white-text" data-bs-dismiss="modal" aria-label="Close"></div>
        </h2>
-       <p>${item.release_date}|${genreList} </p>
+       <p>${item.release_date} | ${genreList} </p>
        <p>${item.overview}</p>
-       <p>${charNames}</p>
-      <div>${item.videos.results}</div>
+       <p>Cast : ${charNames}</p>
+    <div>
+      <p class="fs-3">Video Clip <p>
+      <iframe height="400" width="100%"src="https://www.youtube.com/embed/${video[0].key}"</iframe>
     </div>
-</div>
- `;
+  </div>
+</div>`;
     
 })
 }
 
 // ---------- Fav List ----------------
+let Favcards = [];
 function FavList (movie_id){
-  console.log(movie_id,'id_FavList');
-  axios
-.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=dddcc98fb8bd593bb9ea017eadac6c61&append_to_response=videos,similar,credits`)
-.then((res)=>{console.log(res.data)
- let item = res.data;
- let Favcards = [];
-  Favcards.push(item);
-  localStorage.setItem("Favcards", JSON.stringify(Favcards)); 
-  console.log(localStorage.getItem("Favcards"));
-  const main_favPage = document.getElementById("main");
-  console.log(main_favPage);
-  JSON.parse(localStorage.getItem("Favcards")).forEach(function(element){
-`<div class="col-6 col-md-2 mb-4 m-md-1"> 
-    <div class="card border-0">
-      <img src=${imgPath+element.poster_path}>
-    </div>
- </div>`
-  });
- })
-
+  if (!Favcards.includes(movie_id)){
+  Favcards.push(movie_id);
+  console.log(Favcards,'id_FavList');
+  localStorage.setItem("Favcards", JSON.stringify(Favcards)); // "stringify" store as string 
+  console.log(localStorage.Favcards);
+  }
+ 
 }
