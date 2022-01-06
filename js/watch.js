@@ -6,15 +6,15 @@ let arr=[];
 
 console.log(localStorage);
 //  "parse" store as index
-console.log(JSON.parse(localStorage.getItem("Favcards"))); 
-JSON.parse(localStorage.getItem("Favcards")).forEach(function(element){
+console.log(JSON.parse(localStorage.getItem("watchcards"))); 
+JSON.parse(localStorage.getItem("watchcards")).forEach(function(element){
 
 axios
 .get(`https://api.themoviedb.org/3/movie/${element}}?api_key=dddcc98fb8bd593bb9ea017eadac6c61&append_to_response=videos,similar,credits`)
 .then((res)=>{console.log(res.data,"each fetch")
 arr.push(res.data);
 console.log(arr);
-document.getElementById("FavMain").innerHTML = arr.map(item=>
+document.getElementById("watchMain").innerHTML = arr.map(item=>
 `<div class="col-md-3"> 
     <div class="card border-0 ">
       <img src=${imgPath+item.poster_path} >
@@ -28,17 +28,17 @@ document.getElementById("FavMain").innerHTML = arr.map(item=>
 
 // remove one movie from list
 function RemoveFromList(Movie_id){
-    Favarr = JSON.parse(localStorage.getItem("Favcards")) // get all fav movies from localStorage
-    Favarr.splice(Favarr.indexOf(Movie_id), 1); // Remove the movie from list 
-    console.log(Favarr, "My New List"); 
-    localStorage.setItem("Favcards", JSON.stringify(Favarr)); // Update the list 
+    Watcharr = JSON.parse(localStorage.getItem("watchcards")) // get all watch movies from localStorage
+    Watcharr.splice(Watcharr.indexOf(Movie_id), 1); // Remove the movie from list 
+    console.log(Watcharr, "My New List"); 
+    localStorage.setItem("watchcards", JSON.stringify(Watcharr)); // Update the list 
     location.reload(); // Refresh the page
        }
 
 
 // clear all movies list
 clearBtn.addEventListener("click",function(){
-    localStorage.clear("Favcards")
+    localStorage.clear("watchcards")
     location.reload();
     console.log("localStorage");
     })

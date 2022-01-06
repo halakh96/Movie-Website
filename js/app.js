@@ -73,8 +73,8 @@ card.innerHTML = res.data.results.map(item=>
       <img src=${imgPath+item.poster_path} >
         <div class=" text-center bg-black  justify-content-md-between align-items-center">
           <a class="btn "data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
-          <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
-          <a><i class="fas fa-plus btn   p-1"></i></a>
+          <a><i class="far fa-heart btn p-1 "onclick="FavList(${item.id})"></i></a>
+          <a><i class="fas fa-plus btn p-1"onclick="watchList(${item.id})"></i></a>
         </div>
     </div>
  </div>
@@ -140,6 +140,18 @@ function FavList (movie_id){
   console.log(Favcards,'id_FavList');
   localStorage.setItem("Favcards", JSON.stringify(Favcards)); // "stringify" store as string 
   console.log(localStorage.Favcards);
+  }
+ 
+}
+
+// ---------- watch List ----------------
+let watchcards = [];
+function watchList (movie_id){
+  if (!watchcards.includes(movie_id)){
+    watchcards.push(movie_id);
+  console.log(watchcards,'id_watchList');
+  localStorage.setItem("watchcards", JSON.stringify(watchcards)); // "stringify" store as string 
+  console.log(localStorage.watchcards);
   }
  
 }
