@@ -26,6 +26,7 @@ document.getElementById("FavMain").innerHTML = arr.map(item=>
  })
 })
 
+
 // remove one movie from list
 function RemoveFromList(Movie_id){
     Favarr = JSON.parse(localStorage.getItem("Favcards")) // get all fav movies from localStorage

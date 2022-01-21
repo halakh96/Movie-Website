@@ -2,15 +2,38 @@
 const api_key = "dddcc98fb8bd593bb9ea017eadac6c61";
 const imgPath = "https://image.tmdb.org/t/p/w342";
 
+//  ---------- Get Movies by search ----------------
+const Form = document.querySelector(".bySearch form");
+Form.addEventListener("submit",(event)=>{
+  event.preventDefault();
+let myInput = document.querySelector("#myInput").value;
+console.log(myInput);
+axios
+.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&page=1&include_adult=false&query=${myInput}`)
+.then ((res) =>{ console.log(res.data.results)
+  document.getElementById("searchedMovie").innerHTML = res.data.results.map(item=> 
+  `<div class="col-6 col-md-3 mb-4"> 
+      <div class="card border-0">
+         <img src=${imgPath+item.poster_path}>
+           <div class=" text-center bg-black  justify-content-md-between align-items-center">
+               <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+               <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
+               <a><i class="fas fa-plus btn   p-1"></i></a>
+           </div>
+        </div>
+  </div>`
+  ).join('')
+  })
+})
 
-// // ---------- Get Trending Movies ----------------
+//  ---------- Get Trending Movies ----------------
 const Trending_apiUrl= 'https://api.themoviedb.org/3/trending/movie/day?api_key=dddcc98fb8bd593bb9ea017eadac6c61';
 axios
 .get(Trending_apiUrl)
 .then ((res) =>{ console.log(res.data.results)
 document.getElementById("Trending").innerHTML = res.data.results.map(item=> 
 `<div class="col-6 col-md-3 mb-4"> 
-    <div class="card border-0">
+    <div class="card border-0 ">
        <img src=${imgPath+item.poster_path}>
          <div class=" text-center bg-black  justify-content-md-between align-items-center">
              <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
@@ -117,7 +140,9 @@ var similarMoviesList = similarMovies.map((element)=>{
  <div class="modal-dialog modal-xl modal-dialog-centered "">
     <div class="modal-content bg-darkGray p-4 text-center">
        <h2>${item.title}
-        <div type="button"  class="btn-close float-end white-text" data-bs-dismiss="modal" aria-label="Close"></div>
+       <div type="button" class=" float-end " data-bs-dismiss="modal" aria-label="Close">
+       <i class="fas fa-times white-text" aria-hidden="true"></i>
+       </div>
        </h2>
        <p>${item.release_date} | ${genreList} </p>
        <p>${item.overview}</p>
@@ -141,8 +166,9 @@ function FavList (movie_id){
   localStorage.setItem("Favcards", JSON.stringify(Favcards)); // "stringify" store as string 
   console.log(localStorage.Favcards);
   }
- 
 }
+Favcards = [...JSON.parse(localStorage.getItem("Favcards"))]; 
+
 
 // ---------- watch List ----------------
 let watchcards = [];
@@ -153,5 +179,5 @@ function watchList (movie_id){
   localStorage.setItem("watchcards", JSON.stringify(watchcards)); // "stringify" store as string 
   console.log(localStorage.watchcards);
   }
- 
 }
+
