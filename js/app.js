@@ -1,6 +1,10 @@
 
 const api_key = "dddcc98fb8bd593bb9ea017eadac6c61";
 const imgPath = "https://image.tmdb.org/t/p/w342";
+let watchcards = [];
+let Favcards = [];
+
+
 
 //  ---------- Get Movies by search ----------------
 const Form = document.querySelector(".bySearch form");
@@ -18,7 +22,7 @@ axios
            <div class=" text-center bg-black  justify-content-md-between align-items-center">
                <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
                <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
-               <a><i class="fas fa-plus btn   p-1"></i></a>
+               <a><i class="fas fa-plus btn   p-1"onclick="watchList(${item.id})"></i></a>
            </div>
         </div>
   </div>`
@@ -37,8 +41,8 @@ document.getElementById("Trending").innerHTML = res.data.results.map(item=>
        <img src=${imgPath+item.poster_path}>
          <div class=" text-center bg-black  justify-content-md-between align-items-center">
              <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
-             <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
-             <a><i class="fas fa-plus btn   p-1"></i></a>
+             <a><i class="far fa-heart btn  p-1" onclick="FavList(${item.id})" ></i></a>
+             <a><i class="fas fa-plus btn   p-1" onclick="watchList(${item.id})"></i></a>
          </div>
       </div>
 </div>`
@@ -158,7 +162,6 @@ var similarMoviesList = similarMovies.map((element)=>{
 }
 
 // ---------- Fav List ----------------
-let Favcards = [];
 function FavList (movie_id){
   if (!Favcards.includes(movie_id)){
   Favcards.push(movie_id);
@@ -171,7 +174,6 @@ Favcards = [...JSON.parse(localStorage.getItem("Favcards"))];
 
 
 // ---------- watch List ----------------
-let watchcards = [];
 function watchList (movie_id){
   if (!watchcards.includes(movie_id)){
     watchcards.push(movie_id);
@@ -180,4 +182,4 @@ function watchList (movie_id){
   console.log(localStorage.watchcards);
   }
 }
-
+watchcards = [...JSON.parse(localStorage.getItem("watchcards"))];
