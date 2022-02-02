@@ -11,3 +11,10 @@ color:white!important;
     box-shadow: none !important;
   }  
 
+.color:active {
+    background: red!important;
+}
+
+.test:hover {
+    color: white!important;
+}

@@ -20,9 +20,9 @@ axios
       <div class="card border-0">
          <img src=${imgPath+item.poster_path}>
            <div class=" text-center bg-black  justify-content-md-between align-items-center">
-               <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
-               <a><i class="far fa-heart btn  p-1 "onclick="FavList(${item.id})" ></i></a>
-               <a><i class="fas fa-plus btn   p-1"onclick="watchList(${item.id})"></i></a>
+               <a class="btn test"data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+               <a><i class="far fa-heart btn p-1 test"onclick="FavList(${item.id})" ></i></a>
+               <a><i class="fas fa-plus btn p-1 test"onclick="watchList(${item.id})"></i></a>
            </div>
         </div>
   </div>`
@@ -40,9 +40,9 @@ document.getElementById("Trending").innerHTML = res.data.results.map(item=>
     <div class="card border-0 ">
        <img src=${imgPath+item.poster_path}>
          <div class=" text-center bg-black  justify-content-md-between align-items-center">
-             <a class="btn "data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
-             <a><i class="far fa-heart btn  p-1" onclick="FavList(${item.id})" ></i></a>
-             <a><i class="fas fa-plus btn   p-1" onclick="watchList(${item.id})"></i></a>
+             <a class="btn test"data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+             <a><i class="far fa-heart btn p-1 test" onclick="FavList(${item.id})"></i></a>
+             <a><i class="fas fa-plus btn p-1 test" onclick="watchList(${item.id})"></i></a>
          </div>
       </div>
 </div>`
@@ -99,9 +99,9 @@ card.innerHTML = res.data.results.map(item=>
     <div class="card border-0 " >
       <img src=${imgPath+item.poster_path} >
         <div class=" text-center bg-black  justify-content-md-between align-items-center">
-          <a class="btn "data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
-          <a><i class="far fa-heart btn p-1 "onclick="FavList(${item.id})"></i></a>
-          <a><i class="fas fa-plus btn p-1"onclick="watchList(${item.id})"></i></a>
+          <a class="btn test"data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#TheModalBox" onclick="MoviesDetails(${item.id})">Details</a>
+          <a><i class="far fa-heart btn p-1 test"onclick="FavList(${item.id})"></i></a>
+          <a><i class="fas fa-plus btn p-1 test"onclick="watchList(${item.id})"></i></a>
         </div>
     </div>
  </div>

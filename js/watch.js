@@ -19,7 +19,7 @@ document.getElementById("watchMain").innerHTML = arr.map(item=>
     <div class="card border-0 ">
       <img src=${imgPath+item.poster_path} >
         <div class=" text-center bg-black  justify-content-md-between align-items-center">
-        <a class="btn "onclick="RemoveFromList(${item.id})">Remove</a>
+        <a class="btn test"onclick="RemoveFromList(${item.id})">Remove</a>
         </div>
 </div>
 </div>`).join('');
@@ -38,7 +38,7 @@ function RemoveFromList(Movie_id){
 
 // clear all movies list
 clearBtn.addEventListener("click",function(){
-    localStorage.clear("watchcards")
+    localStorage.removeItem("watchcards")
     location.reload();
     console.log("localStorage");
     })
