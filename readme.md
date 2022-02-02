@@ -2,7 +2,7 @@
 
 
 ## Introduction
-A simple movies website, If you like movies, this website will be useful to you, as it provides you with a list of movies and you can search for all kinds of movies that you want. Simply type the movie name in the search box, and will appear for you. You can add movies to your favorites or watch list later. As you can rating movies.
+A simple movies website, If you like movies, this website will be useful to you, as it provides you with a list of movies and you can search for all kinds of movies that you want. Simply type the movie name in the search box, and will appear for you. You can add movies to your favorites or watch list later. 
 
 ### Technologies Used:
 * HTML
@@ -30,4 +30,4 @@ A simple movies website, If you like movies, this website will be useful to you,
 <img src="img/screenshot3.png">
 
 ## Live preview
-Check out the demo page [Live Preview]()
+Check out the demo page [Live Preview](https://vibrant-einstein-d99462.netlify.app/)
