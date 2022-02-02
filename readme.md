@@ -1,4 +1,4 @@
-# <img src="img/icon.png" width="50px"> Movies Website
+#  Movies Website
 
 
 ## Introduction
@@ -8,23 +8,26 @@ A simple movies website, If you like movies, this website will be useful to you,
 * HTML
 * CSS
 * Vanilla Javascript
+* Bootstrap
 * [Fontawesome](https://fontawesome.com/)
-* [Tailwind Css](https://tailwindcss.com/)
 * [Axios](https://axios-http.com/)
 * [The Movie DB API](https://www.themoviedb.org/)
 
-## Project Requirements
-- Design Responsive Website by Tailwind Css.
+## Project Functions:
+- Design Responsive Website by Bootstrap.
 - Axios Movies from [The Movie DB API](https://www.themoviedb.org/).
 - Display All Movies information( title, Poster, publisher... etc) on Front End Cards.
 - Categorize Movies into Categories.
 - Allow users to Search for Movies by name.
-- Allow users to rating movies.
-- Allow users to remove rating of movies.
 - Allow users to add movies into favorite list.
 - Allow users to remove movies from favorite list.
 - Allow users to add movies into watch later list.
 - Allow users to remove movies from watch later list.
 
+## Screenshots:
+<img src="img/screenshot1.png">
+<img src="img/screenshot2.png">
+<img src="img/screenshot3.png">
 
-
+## Live preview
+Check out the demo page [Live Preview]()
