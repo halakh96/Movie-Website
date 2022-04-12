@@ -30,4 +30,4 @@ A simple movies website, If you like movies, this website will be useful to you,
 <img src="img/screenshot3.png">
 
 ## Live preview
-Check out the demo page [Live Preview](https://vibrant-einstein-d99462.netlify.app/)
+Check out the demo page [Live Preview](https://halakh96-movie-website.netlify.app/)
